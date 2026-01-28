@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fine Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Excel export library -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+
+  <header>
+    <img src="logo.png" class="logo-small">
+    <h1>The Redeemed Christian Church of God</h1>
+    <p>Sunday School Fine Record</p>
+  </header>
+
+  <form id="fineForm">
+    <input type="text" id="name" placeholder="Name" required>
+
+    <select id="reason" required>
+      <option value="">Reason</option>
+      <option value="No Manual">No Manual (₦1000)</option>
+      <option value="No Assignment">No Assignment (₦500)</option>
+    </select>
+
+    <select id="paymentMethod" required>
+      <option value="">Payment Method</option>
+      <option value="Cash">Cash</option>
+      <option value="Transfer">Transfer</option>
+    </select>
+
+    <input type="number" id="amount" readonly>
+
+    <button>Add Record</button>
+  </form>
+
+  <h3>Total Collected: ₦<span id="total">0</span></h3>
+
+  <table id="recordTable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Reason</th>
+        <th>Payment</th>
+        <th>Amount (₦)</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <button onclick="exportExcel()">Download Excel</button>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+body {
+  font-family: Arial;
+  background: #f2f5f7;
+  padding: 20px;
+}
+
+.login-body {
+  text-align: center;
+}
+
+.logo {
+  width: 120px;
+}
+
+.logo-small {
+  width: 70px;
+}
+
+form {
+  background: white;
+  padding: 20px;
+  max-width: 400px;
+  margin: auto;
+  border-radius: 8px;
+}
+
+input, select, button {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+button {
+  background: #004aad;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+}
+
+header {
+  text-align: center;
+}
