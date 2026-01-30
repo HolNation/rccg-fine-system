@@ -24,7 +24,7 @@
     <input type="text" id="name" placeholder="Name" required>
 
     <select id="reason" required>
-      <option value="">Reason</option>
+      <option value="">Select Reason</option>
       <option value="No Manual">No Manual (₦1000)</option>
       <option value="No Assignment">No Assignment (₦500)</option>
     </select>
@@ -35,12 +35,12 @@
       <option value="Transfer">Transfer</option>
     </select>
 
-    <input type="number" id="amount" readonly>
+    <input type="number" id="amount" placeholder="Amount Paid" required>
 
-    <button>Add Record</button>
+<button onclick="addRecord()">Add Record</button>
   </form>
 
-  <h3>Total Collected: ₦<span id="total">0</span></h3>
+  <h3>Payment Record: ₦<span id="total">0</span></h3>
 
   <table id="recordTable">
     <thead>
