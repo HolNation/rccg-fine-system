@@ -1,61 +1,77 @@
-const form = document.getElementById("fineForm");
-const tableBody = document.querySelector("#recordTable tbody");
-const reasonSelect = document.getElementById("reason");
-const amountInput = document.getElementById("amount");
+// ================= LOGIN DETAILS =================
+const USER = "coordinator";
+const PASS = "rccg123";
 
-let records = [];
-
-// Auto-set amount based on reason
-reasonSelect.addEventListener("change", function () {
-  if (this.value === "No Manual") {
-    amountInput.value = 1000;
-  } else if (this.value === "No Assignment") {
-    amountInput.value = 500;
-  } else {
-    amountInput.value = "";
-  }
-});
-
-// Add record
-form.addEventListener("submit", function (e) {
+// ================= LOGIN FUNCTION =================
+function login(e) {
   e.preventDefault();
 
-  const name = document.getElementById("name").value;
-  const reason = reasonSelect.value;
-  const paymentMethod = document.getElementById("paymentMethod").value;
-  const amount = amountInput.value;
+  const u = document.getElementById("username").value;
+  const p = document.getElementById("password").value;
 
-  const record = { name, reason, paymentMethod, amount };
-  records.push(record);
+  if (u === USER && p === PASS) {
+    // Save login status
+    localStorage.setItem("loggedIn", "true");
 
-  const row = document.createElement("tr");
-  row.innerHTML = `
-    <td>${name}</td>
-    <td>${reason}</td>
-    <td>${paymentMethod}</td>
-    <td>${amount}</td>
-  `;
-  tableBody.appendChild(row);
+    // Redirect to dashboard
+    window.location.href = "dashboard.html";
+  } else {
+    alert("Invalid login details");
+  }
+}
 
-  form.reset();
-  amountInput.value = "";
-});
+// ================= PROTECT DASHBOARD =================
+if (window.location.pathname.includes("dashboard.html")) {
+  const loggedIn = localStorage.getItem("loggedIn");
 
-// Download CSV report
-function downloadCSV() {
-  let csv = "Name,Reason,Payment Method,Amount\n";
+  if (loggedIn !== "true") {
+    window.location.href = "index.html";
+  }
+}
 
-  records.forEach(r => {
-    csv += `${r.name},${r.reason},${r.paymentMethod},${r.amount}\n`;
+// ================= DASHBOARD LOGIC =================
+let records = [];
+let total = 0;
+
+const reason = document.getElementById("reason");
+const amountInput = document.getElementById("amount");
+const form = document.getElementById("fineForm");
+const table = document.querySelector("#recordTable tbody");
+const totalSpan = document.getElementById("total");
+
+if (reason) {
+  reason.addEventListener("change", () => {
+    amountInput.value =
+      reason.value === "No Manual" ? 1000 :
+      reason.value === "No Assignment" ? 500 : "";
   });
+}
 
-  const blob = new Blob([csv], { type: "text/csv" });
-  const url = URL.createObjectURL(blob);
+if (form) {
+  form.addEventListener("submit", e => {
+    e.preventDefault();
 
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "Sunday_School_Fines_Report.csv";
-  a.click();
+    const record = {
+      Name: name.value,
+      Reason: reason.value,
+      Payment: paymentMethod.value,
+      Amount: Number(amount.value)
+    };
 
-  URL.revokeObjectURL(url);
+    records.push(record);
+    total += record.Amount;
+    totalSpan.textContent = total;
+
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${record.Name}</td>
+      <td>${record.Reason}</td>
+      <td>${record.Payment}</td>
+      <td>${record.Amount}</td>
+    `;
+    table.appendChild(row);
+
+    form.reset();
+    amountInput.value = "";
+  });
 }
