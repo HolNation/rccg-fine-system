@@ -86,7 +86,7 @@ header {
 
 /* RCCG name */
 .church-name {
-  color: #ffffff;
+  color: #0b0b0b;
   font-size: 26px;
   font-weight: 700;
   margin: 0;
@@ -107,4 +107,81 @@ header {
   color: #e0e0e0;
   font-size: 14px;
   margin-top: 8px;
+}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap');
+
+/* GENERAL HEADER */
+.church-header {
+  background-color: #004aad;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 25px;
+}
+
+/* RCCG NAME (DEFAULT) */
+.church-name {
+  font-size: 26px;
+  font-weight: 700;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+/* PALACE OF GLORY (DEFAULT) */
+.branch-name {
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 6px;
+  letter-spacing: 2px;
+}
+
+/* 🔐 LOGIN PAGE COLORS */
+.login-header .church-name {
+  color: #0c0c0c;
+}
+
+.login-branch {
+  color: #000000; /* BLACK on login */
+}
+
+/* 📊 DASHBOARD COLORS */
+.dashboard-church {
+  color: #d0dff0; /* RCCG turns WHITE */
+}
+
+.dashboard-branch {
+  color: #ffffff; /* Palace turns WHITE */
+}
+
+/* ✨ FADE-IN ANIMATION */
+.fade-in {
+  animation: fadeIn 1.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 📱 MOBILE RESPONSIVENESS */
+@media (max-width: 600px) {
+  .church-name {
+    font-size: 20px;
+  }
+
+  .branch-name {
+    font-size: 16px;
+    letter-spacing: 1px;
+  }
+
+  .church-header {
+    padding: 15px;
+  }
 }
